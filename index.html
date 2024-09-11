@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .login-form {
+      width: 300px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dashboard {
+      width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #add-book-form {
+      display: none;
+    }
+
+    #add-book-btn {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #add-book-btn:hover {
+      background-color: #3e8e41;
+    }
+
+    .department-tabs {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .department-tabs li {
+      margin-right: 20px;
+    }
+
+    .department-tabs a {
+      text-decoration: none;
+      color: #337ab7;
+    }
+
+    .department-tabs a:hover {
+      color: #23527c;
+    }
+
+    .book-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .book-table th, .book-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .book-table th {
+      background-color: #f0f0f0;
+    }
+  </style>
+  <link href="wt.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Login Form -->
+  <div class="login-form">
+    <h2>Login</h2>
+    <form id="login-form" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username"><br><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password"><br><br>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+
+  <!-- Dashboard (hidden by default) -->
+  <div class="dashboard" style="display: none;" id="dashboard">
+    <h2>Dashboard</h2>
+    <p>Welcome, Librarian!</p>
+    <button id="add-book-btn">Add Book</button>
+    <div id="add-book-form" style="display: none;">
+      <h2>Add Book</h2>
+      <form id="add-book-form-data" method="post">
+        <label for="book-name">Book Name:</label>
+        <input type="text" id="book-name" name="book_name"><br><br>
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author"><br><br>
+        <label for="edition">Edition:</label>
+        <input type="text" id="edition" name="edition"><br><br>
+        <label for="publisher">Publisher:</label>
+        <input type="text" id="publisher" name="publisher"><br><br>
+        <label for="num-books">Number of Books:</label>
+        <input type="number" id="num-books" name="num_books"><br><br>
+        <input type="submit" value="Add Book">
+      </form>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const loginForm = document.querySelector("#login-form");
+        const dashboard = document.querySelector("#dashboard");
+        const addBookBtn = document.querySelector("#add-book-btn");
+        const addBookForm = document.querySelector("#add-book-form");
+  
+        loginForm.addEventListener("submit", function(event) {
+          event.preventDefault();
+          const username = document.querySelector("#username").value;
+          const password = document.querySelector("#password").value;
+  
+          if (username === "l" && password === "p") {
+            dashboard.style.display = "block";
+            loginForm.style.display = "none";
+          } else {
+            alert("Invalid username or password.");
+          }
+        });
+  
+        addBookBtn.addEventListener("click", function() {
+          addBookForm.style.display = "block";
+        });
+  
+        const addBookFormData = document.querySelector("#add-book-form-data");
+        addBookFormData.addEventListener("submit", function(event) {
+          event.preventDefault();
+          const bookName = document.querySelector("#book-name").value;
+          const author = document.querySelector("#author").value;
+          const edition = document.querySelector("#edition").value;
+          const publisher = document.querySelector("#publisher").value;
+          const numBooks = document.querySelector("#num-books").value;
+          
+          alert(`Book added: ${bookName} by ${author}, ${edition} edition, published by ${publisher}, ${numBooks} copies.`);
+        });
+      });
+    </script>
+    <div class="home-page">
+        <h1>Library Home</h1>
+        <p><b>Number of Volumes: </b>10000</p>
+        <p><b>Number of Issues:</b> 5000</p>
+        <p><b>Brief History of the Library:</b><br>Established in 1997 with only 1 department and now exapaned upto three Departments.</p>
+      </div>
+      <div class="department-tabs">
+        <ul>
+          <li><a href="#dept1">ACSE</a></li>
+          <li><a href="#dept2">CSE</a></li>
+          <li><a href="#dept3">ECE</a></li>
+        </ul>
+        <div id="dept1">
+          <h2>ACSE</h2>
+          <table>
+            <tr>
+              <th>Book Name</th>
+              <th>Author</th>
+              <th>Edition</th>
+              <th>Publisher</th>
+              <th>Number of Books</th>
+            </tr>
+            <tr>
+              <td>Book 1</td>
+              <td>Author 1</td>
+              <td>1st Edition</td>
+              <td>Publisher 1</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>Book 2</td>
+              <td>Author 2</td>
+              <td>2nd Edition</td>
+              <td>Publisher 2</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Book 3</td>
+              <td>Author 3</td>
+              <td>3rd Edition</td>
+              <td>Publisher 3</td>
+              <td>2</td>
+            </tr>
+          </table>
+        </div>
+        <div id="dept2">
+          <h2>CSE</h2>
+          <table>
+            <tr>
+              <th>Book Name</th>
+              <th>Author</th>
+              <th>Edition</th>
+              <th>Publisher</th>
+              <th>Number of Books</th>
+            </tr>
+            <tr>
+              <td>Book 4</td>
+              <td>Author 4</td>
+              <td>1st Edition</td>
+              <td>Publisher 4</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>Book 5</td>
+              <td>Author 5</td>
+              <td>2nd Edition</td>
+              <td>Publisher 5</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Book 6</td>
+              <td>Author 6</td>
+              <td>3rd Edition</td>
+              <td>Publisher 6</td>
+              <td>2</td>
+            </tr>
+          </table>
+        </div>
+        <div id="dept3">
+          <h2>ECE</h2>
+          <table>
+            <tr>
+              <th>Book Name</th>
+              <th>Author</th>
+              <th>Edition</th>
+              <th>Publisher</th>
+              <th>Number of Books</th>
+            </tr>
+            <tr>
+              <td>Book 7</td>
+              <td>Author 7</td>
+              <td>1st Edition</td>
+              <td>Publisher 7</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>Book 8</td>
+              <td>Author 8</td>
+              <td>2nd Edition</td>
+              <td>Publisher 8</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Book 9</td>
+              <td>Author 9</td>
+              <td>3rd Edition</td>
+              <td>Publisher 9</td>
+              <td>2</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </body>
+</html>
+    
+   
